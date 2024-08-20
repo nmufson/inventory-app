@@ -16,7 +16,13 @@
           <% categories.forEach(category => { %>
           <li>
             <div class="category-container">
-              <p><%= category.name %></p>
+              <div class="category-card">
+                <p><%= category.name %></p>
+              </div>
+              <div class="button-container">
+                <button>Edit</button>
+                <button>Delete</button>
+              </div>
             </div>
           </li>
           <% }); %>
@@ -32,7 +38,13 @@
           <% items.forEach(item => { %>
           <li>
             <div class="item-container">
-              <p><%= item.name %></p>
+              <div class="item-card">
+                <p><%= item.name %></p>
+              </div>
+              <div class="button-container">
+                <button>Edit</button>
+                <button>Delete</button>
+              </div>
             </div>
           </li>
           <% }); %>

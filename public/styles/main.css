@@ -3,23 +3,36 @@ ul {
   list-style-type: none;
 }
 
-.category-container,
-.item-container {
+.category-card,
+.item-card {
   cursor: default;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   will-change: transform;
   transition:
     transform 450ms,
     border 450ms;
   /* border 0.1s ease; */
-  max-width: 200px;
-  max-height: 200px;
+  width: 75px;
+  height: 75px;
   border: 1px solid black;
   margin: 10px;
   padding: 20px;
 }
 
-.category-container:hover,
-.item-container:hover {
+.button-container {
+  display: none;
+}
+
+.item-container:hover .button-container,
+.category-container:hover .button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.category-container:hover .category-card,
+.item-container:hover .item-card {
   transition:
     transform 125ms,
     border 125ms;
@@ -28,11 +41,11 @@ ul {
 }
 
 /* https://colorhunt.co/palette/6482ad7fa1c3e2dad6f5eded */
-.category-container {
+.category-card {
   background-color: #7fa1c3;
 }
 
-.item-container {
+.item-card {
   background-color: #e2dad6;
 }
 

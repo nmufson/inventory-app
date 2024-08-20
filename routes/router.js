@@ -9,5 +9,6 @@ router.post('/delete-all-categories', controller.postDeleteCategories);
 router.post('/delete-all-items', controller.postDeleteItems);
 
 router.get('/category', controller.getCategoryByItemName);
+router.get('/item', controller.getItemsByCategoryName);
 
 module.exports = router;

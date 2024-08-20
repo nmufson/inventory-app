@@ -29,6 +29,23 @@ async function getCategoryByItemName(itemName) {
   }
 }
 
+async function getItemsByCategoryName(categoryName) {
+  const query = `
+  SELECT i.category_id, i.name
+  FROM items i
+  JOIN categories c ON i.category_id = c.id
+  WHERE c.name = $1;
+  `;
+
+  try {
+    const result = await pool.query(query, [categoryName]);
+    return result.rows; // Returns an array of items
+  } catch (err) {
+    console.error('Error executing query', err.stack);
+    throw err; // Re-throw the error after logging it
+  }
+}
+
 async function searchCategory(category) {
   const query = 'SELECT * FROM categories WHERE name ILIKE $1';
   const values = [`%${category}%`];
@@ -91,4 +108,5 @@ module.exports = {
   deleteAllCategories,
   deleteAllItems,
   getCategoryByItemName,
+  getItemsByCategoryName,
 };

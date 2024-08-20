@@ -27,6 +27,26 @@ async function getCategoryByItemName(req, res) {
   }
 }
 
+async function getItemsByCategoryName(req, res) {
+  const categoryName = req.query.categoryName;
+
+  try {
+    const returnedItems = await db.getItemsByCategoryName(categoryName);
+    const categories = await db.getAllCategories();
+    const items = await db.getAllItems();
+
+    // Return JSON response
+    res.json({
+      categories,
+      items,
+      returnedItems,
+    });
+  } catch (err) {
+    console.error('Error fetching data:', err.stack);
+    res.status(500).json({ error: 'Failed to retrieve data' });
+  }
+}
+
 async function postAddCategory(req, res) {
   const newCategory = req.body.newCategory;
   await db.addCategory(newCategory);
@@ -59,6 +79,7 @@ async function postDeleteItems(req, res) {
 module.exports = {
   getHomePage,
   getCategoryByItemName,
+  getItemsByCategoryName,
   postAddCategory,
   postAddItem,
   postDeleteCategories,
